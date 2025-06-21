@@ -16,6 +16,10 @@ This is a full-stack web app that demonstrates:
 project-root/
 ├── docker-compose.yml
 ├── nginx.conf
+├── logs/
+│   ├── requests.log
+│   ├── node_request.log
+│   └── flask_request.log
 ├── node-server/
 │   ├── Dockerfile
 │   ├── index.js
