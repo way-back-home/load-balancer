@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./react-app/build:/usr/share/nginx/html
+    depends_on:
+      - node
+      - flask
+
+  node:
+    build: ./node-server
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./logs:/logs
+
+  flask:
+    build: ./flask-server
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./logs:/logs
+
+  react:
+    build: ./react-app
+    working_dir: /app
+    command: npm run build
