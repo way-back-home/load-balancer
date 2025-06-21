@@ -129,23 +129,30 @@ Nginx acts as a reverse proxy:
 Nginx config (`nginx.conf`):
 
 ```nginx
-upstream backend_servers {
-  server node:3000 max_fails=3 fail_timeout=30s;
-  server flask:5000 max_fails=3 fail_timeout=30s;
-}
+events {}
 
-server {
-  listen 80;
-
-  location /api/ {
-    proxy_pass http://backend_servers;
+http {
+  upstream backend_servers {
+    server node:3000 max_fails=3 fail_timeout=30s;
+    server flask:5000 max_fails=3 fail_timeout=30s;
   }
 
-  location / {
-    root /usr/share/nginx/html;
-    index index.html;
+  server {
+    listen 80;
+
+    location /api/ {
+      proxy_pass http://backend_servers;
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr;
+    }
+
+    location / {
+      root /usr/share/nginx/html;
+      index index.html;
+    }
   }
 }
+
 ```
 
 ---
