@@ -34,26 +34,3 @@ def index():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)
-
-
-# import os
-# from flask import Flask, request
-# from datetime import datetime
-
-# app = Flask(__name__)
-
-# LOG_FILE = "/logs/requests.log"
-# os.makedirs("/logs", exist_ok=True)
-
-# @app.before_request
-# def log_request():
-#     log_line = f"{datetime.now()} - [Flask] {request.method} {request.path} from {request.remote_addr}\n"
-#     with open(LOG_FILE, "a") as f:
-#         f.write(log_line)
-
-# @app.route('/api/hello')
-# def index():
-#     return "Hello from Flask!"
-
-# if __name__ == "__main__":
-#     app.run(host="0.0.0.0", debug=True)
