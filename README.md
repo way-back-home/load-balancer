@@ -45,8 +45,8 @@ project-root/
 ### 🔧 1. Clone the Repository
 
 ```bash
-git clone https://your-repo-url.git
-cd project-root
+https://github.com/way-back-home/load-balancer.git
+cd load-balancer
 ```
 
 ### 📦 2. Make Sure You Have
